@@ -1,0 +1,20 @@
+{
+  "name": "easy-boilerplate",
+  "version": "1.0.0",
+  "authors": [
+    "Serifx Xiao <Serifx@outlook.com>"
+  ],
+  "description": "前端项目基本初始环境模板，可立即开始项目开发，并自动化编译生成发布",
+  "main": "dist",
+  "keywords": [
+    "easy-boilerplate",
+    "boilerplate",
+    "front-end-development"
+  ],
+  "ignore": [
+    "node_modules",
+    "dev_components",
+    "test",
+    "tests"
+  ]
+}

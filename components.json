@@ -1,0 +1,7 @@
+{
+  "name" : "easy-boilerplate",
+  "version" : "1.0.0",
+  "dependencies" : {
+    "jquery" : "latest"
+  }
+}

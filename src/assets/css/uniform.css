@@ -1,0 +1,102 @@
+/*!
+ * uniform.css
+ *
+ * Refer to HTML5 Boilerplate
+ *
+ * Author: Serifx Xiao <Serifx@outlook.com>
+ * Date: 2015/11/23
+ * Version: 2.1.0
+ */
+
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea { color: #222; }
+
+body {
+  font-family: "Microsoft Yahei",SimSun, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+button,
+input,
+select { padding-top: 2px; padding-bottom: 2px; }
+textarea { padding-top: 3px; padding-bottom: 3px; }
+
+/* Responsive images and other embedded objects */
+/* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */
+img,
+object,
+embed {
+  max-width: 100%;
+}
+img {
+  vertical-align: middle;
+  overflow: hidden; /* Hide overflow 'Alt' attribute content */
+}
+
+menu,
+ol,
+ul {
+  margin: 0;
+  padding: 0 0 0 40px;
+}
+dl {
+  margin: 0;
+}
+dd {
+  margin: 0 0 0 40px;
+}
+
+table,
+th,
+td {
+  border-style: solid;
+}
+
+blockquote {
+  margin: 1em 40px;
+}
+
+pre {
+  margin: 1em 0;
+}
+
+p,
+pre {
+  margin: 1em 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+
+a { color: #00e; }
+a:visited { color: #551a8b; }
+a:hover { color: #06e; }
+
+::-moz-selection { background: #FF994D; color: #fff; text-shadow: none; }
+     ::selection { background: #FF994D; color: #fff; text-shadow: none; }
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 800px) {
+  /* Style adjustments for viewports that meet the condition */
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+  /* Style adjustments for viewports that meet the condition */
+}

@@ -1,0 +1,22 @@
+{
+  "name": "easy-boilerplate",
+  "version": "1.0.0",
+  "author": "Serifx Xiao <Serifx@outlook.com>",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-autoprefixer": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-watch": "latest"
+  },
+  "description": "前端项目自动化编译环境",
+  "main": "Gruntfile.js",
+  "keywords": [
+    "easy-boilerplate",
+    "javaScript",
+    "CSS"
+  ]
+}

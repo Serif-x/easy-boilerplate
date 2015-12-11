@@ -1,0 +1,129 @@
+/* site header
+   ========================================================================== */
+.site-header {
+  .boxSizing(border-box);
+  background-color: #fff;
+  overflow: visible;
+}
+.site-header .mwrap {
+  height: 100%;
+}
+
+/* nav */
+.site-nav {
+
+}
+.site-nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  li {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #333;
+  }
+  a {
+    display: block;
+    position: relative;
+    font-size: inherit;
+    text-decoration: none;
+    color: inherit;
+    .transitions(all, .3s);
+  }
+  li.active a,
+  a:hover {
+    color: @color_main;
+    background-color: #fff;
+  }
+
+  /* submenu */
+  .submenu {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    top: 100%;
+    left: 0;
+    min-width: 100%;
+    max-width: 120px;
+    overflow: hidden;
+    color: #fff;
+    opacity: 0;
+    .transitions(all, .25s);
+  }
+  .submenu {
+    li {
+      margin: 0;
+      display: block;
+      border-bottom: 1px solid transparent;
+      clear: both;
+      transition: all .25s;
+    }
+    a {
+      display: block;
+      width: 100%;
+      padding: 8px 10px 8px 1.5em;
+      .boxSizing(border-box);
+      overflow: hidden;
+      white-space: nowrap;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      font-size: 14px;
+    }
+    a:hover {
+      background-color: @color_main;
+    }
+    li {
+      a {
+        color: #ccc;
+        background-color: transparent;
+      }
+    }
+  }
+
+  /* hover status */
+  li.on .submenu,
+  li:hover .submenu {
+    display: block;
+    opacity: 1;
+  }
+  li.hover .submenu,
+  li:hover .submenu {
+    background-color: #fbfbfb;
+  }
+  li:hover .submenu {
+    li {
+      border-bottom-color: #333;
+    }
+    a {
+      color: #fff;
+    }
+  }
+}
+
+/* logo */
+.site-logo {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.logo {
+  position: relative;
+  z-index: 1;
+}
+.logo {
+  img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    vertical-align: top;
+  }
+}

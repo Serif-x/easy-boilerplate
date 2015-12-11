@@ -1,0 +1,61 @@
+/* common style
+   ========================================================================== */
+@color_main: #FF994D;
+@color_light: #f6f6f6;
+
+/* clearfix */
+.clearfix() {
+  content: ""; display: table; height: 0; line-height: 0; visibility: hidden;
+}
+
+.boxSizing(@box_style){
+  -webkit-box-sizing: @box_style;
+  -moz-box-sizing: @box_style;
+  box-sizing: @box_style;
+}
+
+.borderRadius(@radius){
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+
+/* Main Basic
+   ========================================================================== */
+html,
+body {
+
+}
+
+
+/* Common style
+   ========================================================================== */
+
+/* wrapper */
+.mwrap {
+  position: relative;
+  margin: 0 auto;
+  .boxSizing(border-box);
+}
+.mwrap {
+  width: 1200px;
+  min-width: 1200px;
+}
+.mwrap:before,
+.mwrap:after {
+  .clrfix();
+}
+.mwrap:after {
+  clear: both;
+}
+
+/* List
+   ========================================================================== */
+
+/* row-list */
+.reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

@@ -1,8 +1,7 @@
 # easy-boilerplate
 
-Author: Serifx Xiao <Serifx@outlook.com>  
+Author: Serifx Xiao \<Serifx@outlook.com\>  
 CreateDate: 2015/12/11  
-Further Changes: 2015/12/11 <Serifx Xiao>  
 
 Licensed under the MIT license
 

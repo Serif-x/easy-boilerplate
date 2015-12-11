@@ -2,10 +2,10 @@
 
 前端项目基本初始环境模板，用于即时项目开发，可自动化编译生成发布  
 
-> Author: Serifx Xiao &lt;Serifx@outlook.com&gt; 
+> Author: Serifx Xiao &lt;Serifx@outlook.com&gt;  
 > CreateDate: 2015/12/11  
 
-> Licensed under the MIT license
+> Licensed under the MIT license  
 
 ## 项目发布及浏览说明
 

@@ -1,318 +1,453 @@
 'use strict';
 
 module.exports = function(grunt){
-  var _pkg = grunt.file.readJSON('package.json');
-  var _info = {
-    author: _pkg.author,
-    company: '杭州海购网络科技有限公司'
+  var PKG = grunt.file.readJSON('package.json');
+  var INFO = {
+    author: PKG.author,
+    company: 'Serifx Xiao',
+    license: PKG.license
   };
-  var _conf = {
-    path: {
-      built: 'src/built',
-      assets: {
-        core: 'dist/assets/core'
+
+  /* configuration
+     ========================================================================== */
+  var CONFIG = {
+    common: {
+      path: {
+        built: 'src/built/',
+        dist: {
+          assets: {
+            core: 'dist/assets/core/'
+          },
+          views: 'dist/views/'
+        }
+      }
+    }
+  };
+
+  /* Components
+     ========================================================================== */
+  CONFIG.components = {
+    js: {
+      /**
+       * utils
+       * ==================================================
+       */
+      utils: {
+        built: {
+          path : CONFIG.common.path.built + 'js/',
+          src: 'src/utilities/*.js',
+          files: {
+            max: CONFIG.common.path.built + 'js/utils.js',
+            min: CONFIG.common.path.built + 'js/utils.min.js'
+          }
+        },
+        dist: {
+          path: CONFIG.common.path.dist.assets.core + 'js/',
+          files: {
+            max: CONFIG.common.path.dist.assets.core + 'js/utils.js',
+            min: CONFIG.common.path.dist.assets.core + 'js/utils.min.js'
+          }
+        },
+        banner: '/*!' +
+                '\n* Site Utilities' +
+                '\n*' +
+                '\n* Author: <%= pkg.author %>' +
+                '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n*' +
+                '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n*/\n'
       },
-      views: 'dist/views'
+      /**
+       * models
+       * ==================================================
+       */
+      models: {
+        built: {
+          path : CONFIG.common.path.built + 'js/',
+          src: 'src/assets/js/models.js',
+          files: {
+            max: CONFIG.common.path.built + 'js/models.js',
+            min: CONFIG.common.path.built + 'js/models.min.js'
+          }
+        },
+        dist: {
+          path: CONFIG.common.path.dist.assets.core,
+          files: {
+            max: CONFIG.common.path.dist.assets.core + 'js/models.js',
+            min: CONFIG.common.path.dist.assets.core + 'js/models.min.js'
+          }
+        },
+        banner: '/*!' +
+                '\n* Site Models' +
+                '\n*' +
+                '\n* Author: <%= pkg.author %>' +
+                '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n*' +
+                '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n*/\n'
+      },
+      /**
+       * controllers
+       * ==================================================
+       */
+      controllers: {
+        built: {
+          path : CONFIG.common.path.built + 'js/',
+          src: [
+            'src/assets/js/controllers.js',
+            'src/components/**/*.js'
+          ],
+          files: {
+            max: CONFIG.common.path.built + 'js/controllers.js',
+            min: CONFIG.common.path.built + 'js/controllers.min.js'
+          }
+        },
+        dist: {
+          path: CONFIG.common.path.dist.assets.core,
+          files: {
+            max: CONFIG.common.path.dist.assets.core + 'js/utils.js',
+            min: CONFIG.common.path.dist.assets.core + 'js/utils.min.js'
+          }
+        },
+        banner: '/*!' +
+                '\n* Site Controllers' +
+                '\n*' +
+                '\n* Author: <%= pkg.author %>' +
+                '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n*' +
+                '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n*/\n'
+      }
+    },
+    css: {
+      /**
+       * basic
+       * ==================================================
+       */
+      basic: {
+        built: {
+          path : CONFIG.common.path.built + 'css/',
+          src: [
+            'src/assets/css/normalize.css',
+            'src/assets/css/uniform.css',
+            'src/assets/css/helper.css'
+          ],
+          files: {
+            max: CONFIG.common.path.built + 'css/basic.css',
+            min: CONFIG.common.path.built + 'css/basic.min.css'
+          }
+        },
+        dist: {
+          path: CONFIG.common.path.dist.assets.core + 'css/',
+          files: {
+            max: CONFIG.common.path.dist.assets.core + 'css/basic.css',
+            min: CONFIG.common.path.dist.assets.core + 'css/basic.min.css'
+          }
+        },
+        banner: '/*!' +
+                '\n* Basic Style, including HTML5-Boilerplate and Helper.css' +
+                '\n*' +
+                '\n* Author: <%= pkg.author %>' +
+                '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n*' +
+                '\n* Copyright (c) 2015 ' + INFO.company +
+                '\n*/\n'
+      },
+      /**
+       * core
+       * ==================================================
+       */
+      core: {
+        built: {
+          path : CONFIG.common.path.built + 'css/',
+          src: [
+            'src/components/**/*.less',
+            'src/components/**/*.css'
+          ],
+          files: {
+            maxLess: CONFIG.common.path.built + 'css/core.less',
+            max: CONFIG.common.path.built + 'css/core.css',
+            min: CONFIG.common.path.built + 'css/core.min.css'
+          }
+        },
+        dist: {
+          path: CONFIG.common.path.dist.assets.core + 'css/',
+          files: {
+            max: CONFIG.common.path.dist.assets.core + 'css/core.css',
+            min: CONFIG.common.path.dist.assets.core + 'css/core.min.css'
+          }
+        },
+        banner: '/*!' +
+                '\n* Site Core Style' +
+                '\n*' +
+                '\n* Author: <%= pkg.author %>' +
+                '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n*' +
+                '\n* Copyright (c) 2015 ' + INFO.company +
+                '\n*/\n'
+      }
     }
   };
 
   // Utilities
   var js_utils = {
-    src: 'src/utilities/*.js',
-    dist: {
-      normal: _conf.path.built + '/js/utils.js'
-    },
-    concatOptions: {
-      mangle: true, // enable changes to variable and function names,
-      preserveComments: true,
-      keepSpecialComments: 1,
-      drop_console: true, // discard calls to console.* functions,
-      sourceMap: false,
-      banner: '/*!' +
-      '\n* Site Utilities' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
-    },
     options: {
-      mangle: true, // enable changes to variable and function names,
-      preserveComments: false,
-      drop_console: true, // discard calls to console.* functions,
-      sourceMap: true,
-      banner: '/*!' +
-      '\n* Site Utilities' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
+      concat: {
+        mangle: true, // enable changes to variable and function names,
+        preserveComments: true,
+        keepSpecialComments: 1,
+        drop_console: false, // discard calls to console.* functions,
+        sourceMap: false,
+        banner: CONFIG.components.js.utils.banner
+      },
+      uglify: {
+        mangle: true, // enable changes to variable and function names,
+        preserveComments: false,
+        drop_console: true, // discard calls to console.* functions,
+        sourceMap: true,
+        banner: CONFIG.components.js.utils.banner
+      }
     },
     files: {
-      normal: {
-        'src/built/js/utils.js': 'src/utilities/*.js'
-      },
-      min: {
-        'src/built/js/utils.min.js': _conf.path.built + '/js/utils.js'
-      }
+      uglify: {}
     }
   };
+  // files
+  js_utils.files.uglify[CONFIG.components.js.utils.built.files.min] = CONFIG.components.js.utils.built.files.max;
 
   // Models
   var js_models = {
-    src: [
-      'src/assets/js/models.js'
-    ],
-    dist: {
-      normal: _conf.path.built + '/js/models.js',
-      min: _conf.path.built + '/js/models.min.js'
-    },
-    concatOptions: {
-      beautify: { ascii_only: true /*中文ascii化*/},
-      keepSpecialComments: 1,
-      drop_console: true, // discard calls to console.* functions,
-      sourceMap: false,
-      banner: '/*!' +
-      '\n* Site Models' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
-    },
     options: {
-      beautify: { ascii_only: true /*中文ascii化*/},
-      keepSpecialComments: 0,
-      drop_console: true, // discard calls to console.* functions,
-      sourceMap: true,
-      banner: '/*!' +
-      '\n* Site Models' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
+      concat: {
+        mangle: true, // enable changes to variable and function names,
+        preserveComments: true,
+        keepSpecialComments: 1,
+        drop_console: false, // discard calls to console.* functions,
+        sourceMap: false,
+        banner: CONFIG.components.js.models.banner
+      },
+      uglify: {
+        mangle: true, // enable changes to variable and function names,
+        preserveComments: false,
+        drop_console: true, // discard calls to console.* functions,
+        sourceMap: true,
+        banner: CONFIG.components.js.models.banner
+      }
     },
     files: {
-      normal: {
-        'src/built/js/models.js': 'src/assets/js/models.js'
-      },
-      min: {
-        'src/built/js/models.min.js': _conf.path.built + '/js/models.js'
-      }
+      uglify: {}
     }
   };
+  // files
+  js_models.files.uglify[CONFIG.components.js.models.built.files.min] = CONFIG.components.js.models.built.files.max;
 
   // Controllers
   var js_controllers = {
-    src: [
-      'src/assets/js/controllers.js',
-      'src/components/**/*.js'
-    ],
-    dist: {
-      normal: _conf.path.built + '/js/controllers.js',
-      min: _conf.path.built + '/js/controllers.min.js'
-    },
-    concatOptions: {
-      beautify: { ascii_only: true /*中文ascii化*/},
-      keepSpecialComments: 1,
-      drop_console: true, // discard calls to console.* functions,
-      sourceMap: false,
-      banner: '/*!' +
-      '\n* Site Controllers' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
-    },
     options: {
-      beautify: { ascii_only: true /*中文ascii化*/},
-      keepSpecialComments: 0,
-      drop_console: true, // discard calls to console.* functions,
-      sourceMap: true,
-      banner: '/*!' +
-      '\n* Site Controllers' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
+      concat: {
+        mangle: true, // enable changes to variable and function names,
+        preserveComments: true,
+        keepSpecialComments: 1,
+        drop_console: false, // discard calls to console.* functions,
+        sourceMap: false,
+        banner: CONFIG.components.js.controllers.banner
+      },
+      uglify: {
+        mangle: true, // enable changes to variable and function names,
+        preserveComments: false,
+        drop_console: true, // discard calls to console.* functions,
+        sourceMap: true,
+        banner: CONFIG.components.js.controllers.banner
+      }
     },
     files: {
-      normal: {
-        'src/built/js/controllers.js': [
-          'src/assets/js/controllers.js',
-          'src/components/**/*.js'
-        ]
-      },
-      min: {
-        'src/built/js/controllers.min.js': _conf.path.built + '/js/controllers.js'
-      }
+      uglify: {}
     }
   };
+  // files
+  js_controllers.files.uglify[CONFIG.components.js.controllers.built.files.min] = CONFIG.components.js.controllers.built.files.max;
 
-  // Basic Style
+  // CSS Basic
   var css_basic = {
-    src: [
-      'src/assets/css/normalize.css',
-      'src/assets/css/uniform.css',
-      'src/assets/css/helper.css'
-    ],
-    dist: {
-      normal: _conf.path.built + '/css/basic.css',
-      min: _conf.path.built + '/css/basic.min.css'
-    },
     options: {
-      beautify: { ascii_only: true /*中文ascii化*/},
-      processImport: true,
-      mediaMerging: true,
-      keepSpecialComments: 1,
-      banner: '/*!' +
-      '\n* Basic Style, including HTML5-Boilerplate and Helper.css' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
+      concat: {
+        beautify: { ascii_only: false /* 中文ASCII化 */ },
+        processImport: true,
+        mediaMerging: false,
+        keepSpecialComments: 1,
+        banner: CONFIG.components.css.basic.banner
+      },
+      less: {
+        max: {
+          compress: false,
+          ieCompact: true,
+          optimization: 2
+        },
+        min: {
+          compress: true,
+          ieCompact: true,
+          optimization: 2,
+          banner: CONFIG.components.css.basic.banner
+        }
+      },
+      cssmin: {
+        beautify: { ascii_only: true /* 中文ASCII化 */ },
+        processImport: true,
+        mediaMerging: true,
+        keepSpecialComments: 1,
+        banner: CONFIG.components.css.basic.banner
+      }
     },
     files: {
-      normal: {
-        'src/built/css/basic.css': [
-          'src/assets/css/normalize.css',
-          'src/assets/css/uniform.css',
-          'src/assets/css/helper.css'
-        ]
-      },
-      min: {
-        'src/built/css/basic.min.css': _conf.path.built + '/css/basic.css'
-      }
+      cssmin: {}
     }
   };
+  css_basic.files.cssmin[CONFIG.components.css.basic.built.files.min] = CONFIG.components.css.basic.built.files.max;
 
-  // Core Style
+  // CSS Core
   var css_core = {
-    src: [
-      'src/components/**/*.less',
-      'src/components/**/*.css'
-    ],
-    dist: {
-      normal: _conf.path.built + '/css/core.css',
-      min: _conf.path.built + '/css/core.min.css'
-    },
     options: {
-      beautify: { ascii_only: true /*中文ascii化*/},
-      processImport: true,
-      mediaMerging: true,
-      keepSpecialComments: 1,
-      banner: '/*!' +
-      '\n* Site Core Style' +
-      '\n*' +
-      '\n* Author: <%= pkg.author %>' +
-      '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
-      '\n*' +
-      '\n* Copyright (c) 2015 ' + _info.company +
-      '\n*/\n'
+      concat: {
+        beautify: { ascii_only: false /* 中文ASCII化 */ },
+        processImport: true,
+        mediaMerging: false,
+        keepSpecialComments: 1,
+        banner: CONFIG.components.css.core.banner
+      },
+      less: {
+        max: {
+          compress: false,
+          ieCompact: true,
+          optimization: 2
+        },
+        min: {
+          compress: true,
+          ieCompact: true,
+          optimization: 2,
+          banner: CONFIG.components.css.core.banner
+        }
+      },
+      cssmin: {
+        beautify: { ascii_only: true /* 中文ASCII化 */ },
+        processImport: true,
+        mediaMerging: true,
+        keepSpecialComments: 1,
+        banner: CONFIG.components.css.core.banner
+      }
     },
     files: {
-      normal: {
-        'src/built/css/core.css': [
-          'src/components/**/*.less',
-          'src/components/**/*.css'
-        ]
+      less: {
+        max: {},
+        min: {}
       },
-      min: {
-        'src/built/css/core.min.css': _conf.path.built + '/css/core.css'
-      }
+      prefix: {},
+      cssmin: {}
     }
   };
+  css_core.files.less.max[CONFIG.components.css.core.built.files.max] = CONFIG.components.css.core.built.files.maxLess;
+  css_core.files.less.min[CONFIG.components.css.core.built.files.min] = CONFIG.components.css.core.built.files.maxLess;
+  css_core.files.prefix[CONFIG.components.css.core.built.files.max] = CONFIG.components.css.core.built.files.max;
+  css_core.files.cssmin[CONFIG.components.css.core.built.files.min] = CONFIG.components.css.core.built.files.max;
 
+
+  /* Grunt初始化
+     ========================================================================== */
   grunt.initConfig({
-    pkg: _pkg,
+    pkg: PKG,
+
     /**
-     * 合并 JS
-     * ===========================================
+     * 1. JS & CSS 合并
+     * ======================================================================================
      */
     concat: {
       /**
        * JS Utilities
        */
       JS_utils: {
-        options: js_utils.concatOptions,
-        src: js_utils.src,
-        dest: js_utils.dist.normal
+        options: js_utils.options.concat,
+        src: CONFIG.components.js.utils.built.src,
+        dest: CONFIG.components.js.utils.built.files.max
       },
       /**
        * JS Models
        */
       JS_models: {
-        options: js_models.concatOptions,
-        src: js_models.src,
-        dest: js_models.dist.normal
+        options: js_models.options.concat,
+        src: CONFIG.components.js.models.built.src,
+        dest: CONFIG.components.js.models.built.files.max
       },
       /**
        * JS Controllers
        */
       JS_controllers: {
-        options: js_controllers.concatOptions,
-        src: js_controllers.src,
-        dest: js_controllers.dist.normal
+        options: js_controllers.options.concat,
+        src: CONFIG.components.js.controllers.built.src,
+        dest: CONFIG.components.js.controllers.built.files.max
       },
       /**
        * CSS Basic
        */
       CSS_basic: {
-        options: css_basic.options,
-        src: css_basic.src,
-        dest: css_basic.dist.normal
+        options: css_basic.options.concat,
+        src: CONFIG.components.css.basic.built.src,
+        dest: CONFIG.components.css.basic.built.files.max
       },
       /**
        * CSS Core
        */
-      CSS_core_pre: {
-        options: css_core.options,
-        src: css_core.src,
-        dest: _conf.path.built + '/pre/core.less'
+      CSS_core: {
+        options: css_core.options.concat,
+        src: CONFIG.components.css.core.built.src,
+        dest: CONFIG.components.css.core.built.files.maxLess
       }
     },
+
     /**
-     * 压缩 JS
-     * ===========================================
+     * 2. JS压缩
+     * ======================================================================================
      */
     uglify: {
       /**
        * JS Utilities
        */
       JS_utils: {
-        options: js_utils.options,
-        files: js_utils.files.min
+        options:js_utils.options.uglify,
+        files: js_utils.files.uglify
       },
       /**
        * JS Models
        */
       JS_models: {
-        options: js_models.options,
-        files: js_models.files.min
+        options: js_models.options.uglify,
+        files: js_models.files.uglify
       },
       /**
        * JS Controllers
        */
       JS_controllers: {
-        options: js_controllers.options,
-        files: js_controllers.files.min
+        options: js_controllers.options.uglify,
+        files: js_controllers.files.uglify
       }
     },
+
     /**
-     * Prefix CSS
-     * ===========================================
+     * 3. CSS编译
+     * ======================================================================================
+     */
+    less: {
+      CSS_core_MAX: {
+        options: css_core.options.less.max,
+        files: css_core.files.less.max
+      }/*,
+      CSS_core_MIN: {
+        options: css_core.options.less.min,
+        files: css_core.files.less.min
+      }*/
+    },
+
+    /**
+     * 4. CSS处理
+     * ======================================================================================
      */
     autoprefixer: {
       /**
@@ -322,84 +457,33 @@ module.exports = function(grunt){
         options: {
           browsers: ['last 2 versions', 'chrome >= 5%', 'firefox >= 5%', 'ie 8', 'ie 9', 'ie 10', 'ie 11', 'edge 12']
         },
-        files: {
-          'src/built/css/core.css': 'src/built/css/core.css'
-        }
+        files: css_core.files.prefix
       }
     },
     /**
-     * 压缩 CSS
-     * ===========================================
+     * 5. 压缩 CSS
+     * ======================================================================================
      */
     cssmin: {
       /**
        * CSS Basic
        */
       CSS_basic: {
-        options: css_basic.options,
-        files: {
-          'src/built/css/basic.min.css': 'src/built/css/basic.css'
-        }
+        options: css_basic.options.cssmin,
+        files: css_basic.files.cssmin
       },
       /**
        * CSS Core
        */
       CSS_core: {
-        options: css_core.options,
-        files: {
-          'src/built/css/core.min.css': 'src/built/css/core.css'
-        }
+        options: css_core.options.cssmin,
+        files: css_core.files.cssmin
       }
     },
+
     /**
-     * 合并 & 压缩 CSS
-     * ===========================================
-     */
-    less: {
-      CSS_basic_MAX: {
-        options: {
-          compress: false,
-          ieCompat: true,
-          optimization: 2,
-          banner: css_basic.options.banner
-        },
-        files: css_basic.files.normal
-      },
-      CSS_basic_MIN: {
-        options: {
-          compress: true,
-          ieCompat: true,
-          optimization: 2,
-          banner: css_basic.options.banner
-        },
-        files: css_basic.files.min
-      },
-      CSS_core_MAX: {
-        options: {
-          compress: false,
-          ieCompat: true,
-          optimization: 2,
-          banner: css_core.options.banner
-        },
-        files: {
-          'src/built/css/core.css' : _conf.path.built + '/pre/core.less'
-        }
-      },
-      CSS_core_MIN: {
-        options: {
-          compress: true,
-          ieCompat: true,
-          optimization: 2,
-          banner: css_core.options.banner
-        },
-        files: {
-          'src/built/css/core.min.css' : _conf.path.built + '/css/core.css'
-        }
-      }
-    },
-    /**
-     * 复制 HTML
-     * ===========================================
+     * 6. 复制 HTML
+     * ======================================================================================
      */
     copy: {
       /**
@@ -407,29 +491,23 @@ module.exports = function(grunt){
        */
       components: {
         files: [
-          { src: ['src/components/**/*.html'], dest: _conf.path.views + '/components/', expand: true, flatten: true, filter: 'isFile' }
+          { src: ['src/components/**/*.html'], dest: CONFIG.common.path.dist.views + '/components/', expand: true, flatten: true, filter: 'isFile' }
         ]
       },
       js: {
         files: [
-          { src: [_conf.path.built + '/js/*'], dest: _conf.path.assets.core + '/js/', expand: true, flatten: true },
+          { src: [CONFIG.common.path.built + '/js/*'], dest: CONFIG.common.path.dist.assets.core + '/js/', expand: true, flatten: true }
         ]
       },
       css: {
         files: [
-          { src: [_conf.path.built + '/css/*'], dest: _conf.path.assets.core + '/css/', expand: true, flatten: true }
-        ]
-      },
-      assets: {
-        files: [
-          { src: [_conf.path.built + '/js/*'], dest: _conf.path.assets.core + '/js/', expand: true, flatten: true },
-          { src: [_conf.path.built + '/css/*'], dest: _conf.path.assets.core + '/css/', expand: true, flatten: true }
+          { src: [CONFIG.common.path.built + '/css/*.css'], dest: CONFIG.common.path.dist.assets.core + '/css/', expand: true, flatten: true }
         ]
       }
     },
     /**
-     * 实时监测
-     * ===========================================
+     * 7. 实时监测
+     * ======================================================================================
      */
     watch: {
       components: {
@@ -445,7 +523,9 @@ module.exports = function(grunt){
     }
   });
 
-  // 载入插件
+
+  /* 载入插件
+     ========================================================================== */
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less'); // compile less file
   grunt.loadNpmTasks('grunt-autoprefixer'); // before minify
@@ -454,23 +534,30 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  // 注册(组装)任务
-  // css
+
+  /* 注册(组装)任务
+     ========================================================================== */
+
+  // CSS编译处理(仅编译不发布)
   grunt.registerTask('build_css_basic', ['concat:CSS_basic', 'cssmin:CSS_basic']);
-  grunt.registerTask('build_css_core', ['concat:CSS_core_pre', 'less:CSS_core_MAX', 'autoprefixer:CSS_core', 'cssmin:CSS_core']);
-  grunt.registerTask('build_css_all', ['build_css_basic', 'build_css_core']);
+  grunt.registerTask('build_css_core', ['concat:CSS_core', 'less:CSS_core_MAX', 'autoprefixer:CSS_core', 'cssmin:CSS_core']);
+  grunt.registerTask('build_CSS', ['build_css_basic', 'build_css_core']); // all css
 
-  // js
+  // JS编译处理(仅编译不发布)
+  grunt.registerTask('build_js_utils', ['concat:JS_utils', 'uglify:JS_utils']);
+  grunt.registerTask('build_js_models', ['concat:JS_models', 'uglify:JS_models']);
   grunt.registerTask('build_js_controllers', ['concat:JS_controllers', 'uglify:JS_controllers']);
+  grunt.registerTask('build_JS', ['build_js_utils','build_js_models','build_js_controllers']); // all js
 
-  grunt.registerTask('build_js_all', ['concat:JS_utils', 'uglify:JS_utils', 'concat:JS_models', 'uglify:JS_models', 'build_js_controllers']);
 
-  // Group tasks
+  /* Group tasks(编译后发布)
+     ========================================================================== */
+
   // css and js
-  grunt.registerTask('assets', ['build_css_all', 'build_js_all', 'copy:assets']);
+  grunt.registerTask('assets', ['build_JS', 'build_CSS', 'copy:js', 'copy:css']);
   // css、js and html
-  grunt.registerTask('components', ['build_css_core', 'build_js_all', 'copy:assets', 'copy:components']);
+  grunt.registerTask('components', ['build_JS','build_css_core', 'copy:js', 'copy:css', 'copy:components']);
 
   // all tasks
-  grunt.registerTask('all', [ 'assets', 'copy:components']);
+  grunt.registerTask('default', ['build_CSS', 'build_JS', 'copy:js', 'copy:css', 'copy:components']);
 };

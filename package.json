@@ -1,6 +1,16 @@
 {
   "name": "easy-boilerplate",
   "version": "1.0.0",
+  "author": "Serifx Xiao <Serifx@outlook.com>",
+  "license": "MIT",
+  "description": "前端项目自动化编译环境",
+  "homepage": "https://github.com/Serif-x/easy-boilerplate",
+  "main": "Gruntfile.js",
+  "keywords": [
+    "easy-boilerplate",
+    "javaScript",
+    "CSS"
+  ],
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-concat": "latest",
@@ -14,15 +24,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Serif-x/easy-boilerplate"
-  },
-  "homepage": "https://github.com/Serif-x/easy-boilerplate",
-  "author": "Serifx Xiao <Serifx@outlook.com>",
-  "license": "MIT",
-  "description": "前端项目自动化编译环境",
-  "main": "Gruntfile.js",
-  "keywords": [
-    "easy-boilerplate",
-    "javaScript",
-    "CSS"
-  ]
+  }
 }

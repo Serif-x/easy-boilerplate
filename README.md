@@ -16,6 +16,6 @@
 
 1. 安装配置环境：node.js 和 grunt
 2. 在命令行环境下，在项目根目录输入命令： npm install，安装项目依赖node modules
-3. 进入Gruntfile.js所在目录下，编译所有文件，输入 grunt all
+3. 进入Gruntfile.js所在目录下，编译所有文件，输入 grunt [|default]
 4. 开发时，实时监测src目录文件(CSS & JS & HTML)改动，并实时编译，输入 grunt watch:components
 5. 开发时，实时监测仅脚本及样式(CSS & JS)改动，并实时编译，输入 grunt watch:assets

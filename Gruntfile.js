@@ -4,8 +4,8 @@ module.exports = function(grunt){
   var PKG = grunt.file.readJSON('package.json');
   var INFO = {
     author: PKG.author,
-    company: 'Serifx Xiao',
-    license: PKG.license
+    license: PKG.license,
+    company: 'Serifx Xiao'
   };
 
   /* configuration
@@ -19,7 +19,8 @@ module.exports = function(grunt){
             core: 'dist/assets/core/'
           },
           views: 'dist/views/'
-        }
+        },
+        server: 'dist/'
       }
     }
   };
@@ -505,8 +506,26 @@ module.exports = function(grunt){
         ]
       }
     },
+
     /**
-     * 7. 实时监测
+     * 7. 服务器中浏览
+     * ======================================================================================
+     */
+    connect: {
+      server: {
+        options: {
+          port: 8001,
+          livereload: 8002,  //声明给 watch 监听的端口
+          keepalive: true,
+          base: CONFIG.common.path.server,
+          hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
+          open: true //自动打开网页 http://
+        }
+      }
+    },
+
+    /**
+     * 8. 实时监测
      * ======================================================================================
      */
     watch: {
@@ -517,7 +536,15 @@ module.exports = function(grunt){
         ],
         tasks: ['components'],
         options: {
-          liveload: true
+          reload: true,
+          livereload: true
+        }
+      },
+      views: {
+        files: CONFIG.common.path.server + '*',
+        options: {
+          reload: true,
+          livereload: '<%=connect.server.options.livereload %>' // connect server
         }
       }
     }
@@ -533,6 +560,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-connect'); // connect to local server
 
 
   /* 注册(组装)任务
@@ -560,4 +588,9 @@ module.exports = function(grunt){
 
   // all tasks
   grunt.registerTask('default', ['build_CSS', 'build_JS', 'copy:js', 'copy:css', 'copy:components']);
+
+  /* Server
+   ========================================================================== */
+  grunt.registerTask('browse', ['connect:server', 'watch:views']);
+
 };

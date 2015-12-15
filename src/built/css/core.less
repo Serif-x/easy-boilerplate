@@ -2,16 +2,14 @@
 * Site Core Style
 *
 * Author: Serifx Xiao <Serifx@outlook.com>
-* Date: 2015/12/14
+* Date: 2015/12/15
 *
 * Copyright (c) 2015 Serifx Xiao
 */
-/* common style
-   ========================================================================== */
+
 @color_main: #FF994D;
 @color_light: #f6f6f6;
 
-/* clearfix */
 .clearfix() {
   content: ""; display: table; height: 0; line-height: 0; visibility: hidden;
 }
@@ -41,7 +39,10 @@
    ========================================================================== */
 html,
 body {
-
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
 }
 
 
@@ -76,6 +77,7 @@ body {
   list-style: none;
 }
 
+
 /* site content
    ========================================================================== */
 .site-content {
@@ -91,11 +93,12 @@ body {
   height: 100%;
 }
 
+
 /* site footer
    ========================================================================== */
 .site-footer {
   position: relative;
-  background-color: #6B3F8B;
+  background-color: #3F8B7C;
   color: #fff;
 }
 .site-footer .mwrap {
@@ -123,6 +126,7 @@ body {
     color: @color_main;
   }
 }
+
 
 
 /* gridview
@@ -160,6 +164,7 @@ body {
     border: 1px solid #eee;
   }
 }
+
 
 /* site header
    ========================================================================== */
@@ -344,6 +349,9 @@ body {
   }
 }
 
+
+/* tab switch
+   ========================================================================== */
 .tab-switch {
 
 }

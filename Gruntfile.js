@@ -15,6 +15,7 @@ module.exports = function(grunt){
       path: {
         built: 'src/built/',
         dist: {
+          root: 'dist/',
           assets: {
             core: 'dist/assets/core/'
           },
@@ -275,17 +276,6 @@ module.exports = function(grunt){
       concat: {
         banner: CONFIG.components.css.basic.banner
       },
-      less: {
-        max: {
-          compress: false,
-          ieCompact: true
-        },
-        min: {
-          compress: true,
-          ieCompact: true,
-          banner: CONFIG.components.css.basic.banner
-        }
-      },
       cssmin: {
         keepSpecialComments: 1,
         banner: CONFIG.components.css.basic.banner
@@ -475,7 +465,7 @@ module.exports = function(grunt){
        */
       components: {
         files: [
-          { src: ['src/components/**/*.html'], dest: CONFIG.common.path.dist.views + '/components/', expand: true, flatten: true, filter: 'isFile' }
+          { src: ['src/components/**/*.html'], dest: CONFIG.common.path.dist.root + '/components/', expand: true, flatten: true, filter: 'isFile' }
         ]
       },
       js: {

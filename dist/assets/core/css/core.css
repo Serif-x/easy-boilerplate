@@ -2,15 +2,21 @@
 * Site Core Style
 *
 * Author: Serifx Xiao <Serifx@outlook.com>
-* Date: 2015/12/14
+* Date: 2015/12/15
 *
 * Copyright (c) 2015 Serifx Xiao
 */
-/* common style
-   ========================================================================== */
-/* clearfix */
+
+
 /* Main Basic
    ========================================================================== */
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
 /* Common style
    ========================================================================== */
 /* wrapper */
@@ -62,7 +68,7 @@
    ========================================================================== */
 .site-footer {
   position: relative;
-  background-color: #6B3F8B;
+  background-color: #3F8B7C;
   color: #fff;
 }
 .site-footer .mwrap {
@@ -286,6 +292,8 @@
   border-top-right-radius: .5em;
   border-bottom-right-radius: .5em;
 }
+/* tab switch
+   ========================================================================== */
 .tab-ctrl ul:before,
 .tab-content:before,
 .tab-ctrl ul:after,

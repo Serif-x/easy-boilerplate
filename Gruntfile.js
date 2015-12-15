@@ -21,7 +21,8 @@ module.exports = function(grunt){
           views: 'dist/views/'
         },
         server: 'dist/'
-      }
+      },
+      browsers: ['last 2 versions', 'chrome >= 5%', 'firefox >= 5%', 'ie 8', 'ie 9', 'ie 10', 'ie 11', 'edge 12']
     }
   };
 
@@ -194,17 +195,17 @@ module.exports = function(grunt){
   var js_utils = {
     options: {
       concat: {
-        mangle: true, // enable changes to variable and function names,
-        preserveComments: true,
-        keepSpecialComments: 1,
-        drop_console: false, // discard calls to console.* functions,
-        sourceMap: false,
+        //sourceMap: false,
         banner: CONFIG.components.js.utils.banner
       },
       uglify: {
         mangle: true, // enable changes to variable and function names,
-        preserveComments: false,
-        drop_console: true, // discard calls to console.* functions,
+        compress: true,
+        ASCIIOnly: true,
+        preserveComments: false, // false, 'some', 'all',
+        mangleProperties: true,
+        reserveDOMProperties: true,
+        //drop_console: true, // discard calls to console.* functions,
         sourceMap: true,
         banner: CONFIG.components.js.utils.banner
       }
@@ -220,17 +221,17 @@ module.exports = function(grunt){
   var js_models = {
     options: {
       concat: {
-        mangle: true, // enable changes to variable and function names,
-        preserveComments: true,
-        keepSpecialComments: 1,
-        drop_console: false, // discard calls to console.* functions,
-        sourceMap: false,
+        //sourceMap: false,
         banner: CONFIG.components.js.models.banner
       },
       uglify: {
         mangle: true, // enable changes to variable and function names,
-        preserveComments: false,
-        drop_console: true, // discard calls to console.* functions,
+        compress: true,
+        ASCIIOnly: true,
+        preserveComments: false, // false, 'some', 'all',
+        mangleProperties: true,
+        reserveDOMProperties: true,
+        //drop_console: true, // discard calls to console.* functions,
         sourceMap: true,
         banner: CONFIG.components.js.models.banner
       }
@@ -246,17 +247,17 @@ module.exports = function(grunt){
   var js_controllers = {
     options: {
       concat: {
-        mangle: true, // enable changes to variable and function names,
-        preserveComments: true,
-        keepSpecialComments: 1,
-        drop_console: false, // discard calls to console.* functions,
-        sourceMap: false,
+        //sourceMap: false,
         banner: CONFIG.components.js.controllers.banner
       },
       uglify: {
         mangle: true, // enable changes to variable and function names,
-        preserveComments: false,
-        drop_console: true, // discard calls to console.* functions,
+        compress: true,
+        ASCIIOnly: true,
+        preserveComments: false, // false, 'some', 'all',
+        mangleProperties: true,
+        reserveDOMProperties: true,
+        //drop_console: true, // discard calls to console.* functions,
         sourceMap: true,
         banner: CONFIG.components.js.controllers.banner
       }
@@ -272,29 +273,20 @@ module.exports = function(grunt){
   var css_basic = {
     options: {
       concat: {
-        beautify: { ascii_only: false /* 中文ASCII化 */ },
-        processImport: true,
-        mediaMerging: false,
-        keepSpecialComments: 1,
         banner: CONFIG.components.css.basic.banner
       },
       less: {
         max: {
           compress: false,
-          ieCompact: true,
-          optimization: 2
+          ieCompact: true
         },
         min: {
           compress: true,
           ieCompact: true,
-          optimization: 2,
           banner: CONFIG.components.css.basic.banner
         }
       },
       cssmin: {
-        beautify: { ascii_only: true /* 中文ASCII化 */ },
-        processImport: true,
-        mediaMerging: true,
         keepSpecialComments: 1,
         banner: CONFIG.components.css.basic.banner
       }
@@ -309,29 +301,20 @@ module.exports = function(grunt){
   var css_core = {
     options: {
       concat: {
-        beautify: { ascii_only: false /* 中文ASCII化 */ },
-        processImport: true,
-        mediaMerging: false,
-        keepSpecialComments: 1,
         banner: CONFIG.components.css.core.banner
       },
       less: {
         max: {
           compress: false,
-          ieCompact: true,
-          optimization: 2
+          ieCompact: true
         },
         min: {
           compress: true,
           ieCompact: true,
-          optimization: 2,
           banner: CONFIG.components.css.core.banner
         }
       },
       cssmin: {
-        beautify: { ascii_only: true /* 中文ASCII化 */ },
-        processImport: true,
-        mediaMerging: true,
         keepSpecialComments: 1,
         banner: CONFIG.components.css.core.banner
       }
@@ -456,7 +439,7 @@ module.exports = function(grunt){
        */
       CSS_core: {
         options: {
-          browsers: ['last 2 versions', 'chrome >= 5%', 'firefox >= 5%', 'ie 8', 'ie 9', 'ie 10', 'ie 11', 'edge 12']
+          browsers: CONFIG.common.browsers
         },
         files: css_core.files.prefix
       }
@@ -577,9 +560,9 @@ module.exports = function(grunt){
   grunt.registerTask('build_js_controllers', ['concat:JS_controllers', 'uglify:JS_controllers']);
   grunt.registerTask('build_JS', ['build_js_utils','build_js_models','build_js_controllers']); // all js
 
-
-  /* Group tasks(编译后发布)
-     ========================================================================== */
+  /**
+    Group tasks(编译后发布)
+    ========================================================================== */
 
   // css and js
   grunt.registerTask('assets', ['build_JS', 'build_CSS', 'copy:js', 'copy:css']);

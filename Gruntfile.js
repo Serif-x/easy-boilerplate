@@ -5,6 +5,7 @@ module.exports = function(grunt){
   var INFO = {
     author: PKG.author,
     license: PKG.license,
+    version: PKG.version,
     company: 'Serifx Xiao'
   };
 
@@ -56,8 +57,10 @@ module.exports = function(grunt){
                 '\n*' +
                 '\n* Author: <%= pkg.author %>' +
                 '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n* Version: <%= pkg.version %>' +
                 '\n*' +
                 '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n* Licensed under the <%= pkg.license %> license' +
                 '\n*/\n'
       },
       /**
@@ -85,8 +88,10 @@ module.exports = function(grunt){
                 '\n*' +
                 '\n* Author: <%= pkg.author %>' +
                 '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n* Version: <%= pkg.version %>' +
                 '\n*' +
                 '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n* Licensed under the <%= pkg.license %> license' +
                 '\n*/\n'
       },
       /**
@@ -117,8 +122,10 @@ module.exports = function(grunt){
                 '\n*' +
                 '\n* Author: <%= pkg.author %>' +
                 '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n* Version: <%= pkg.version %>' +
                 '\n*' +
                 '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n* Licensed under the <%= pkg.license %> license' +
                 '\n*/\n'
       }
     },
@@ -152,8 +159,10 @@ module.exports = function(grunt){
                 '\n*' +
                 '\n* Author: <%= pkg.author %>' +
                 '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n* Version: <%= pkg.version %>' +
                 '\n*' +
-                '\n* Copyright (c) 2015 ' + INFO.company +
+                '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n* Licensed under the <%= pkg.license %> license' +
                 '\n*/\n'
       },
       /**
@@ -185,8 +194,10 @@ module.exports = function(grunt){
                 '\n*' +
                 '\n* Author: <%= pkg.author %>' +
                 '\n* Date: <%= grunt.template.today("yyyy/mm/dd") %>' +
+                '\n* Version: <%= pkg.version %>' +
                 '\n*' +
-                '\n* Copyright (c) 2015 ' + INFO.company +
+                '\n* Copyright (c) <%= grunt.template.today("yyyy") %> ' + INFO.company +
+                '\n* Licensed under the <%= pkg.license %> license' +
                 '\n*/\n'
       }
     }

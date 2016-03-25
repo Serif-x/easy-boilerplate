@@ -506,8 +506,8 @@ module.exports = function(grunt){
           hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
           open: {
             target: 'http://localhost:8001/views', // target url to open
-            appName: 'pool', // name of the app that opens, ie: open, start, xdg-open
-            callback: function() { grunt.log('Welcome to my server!') } // called when the app has opened
+            //appName: 'pool', // name of the app that opens, ie: open, start, xdg-open
+            callback: function() { console.log('Welcome to my server!') } // called when the app has opened
           }
         }
       }
@@ -595,11 +595,11 @@ module.exports = function(grunt){
   // css、js and html
   grunt.registerTask('components', ['build_JS','build_css_core', 'copy:js', 'copy:css', 'copy:components']);
 
-  // all tasks
-  grunt.registerTask('default', ['build_CSS', 'build_JS', 'copy:js', 'copy:css', 'copy:components']);
-
   /* Server
    ========================================================================== */
   grunt.registerTask('browse', ['connect:server', 'watch:assets']);
+
+  // all tasks
+  grunt.registerTask('default', ['build_CSS', 'build_JS', 'copy:js', 'copy:css', 'copy:components', 'browse']);
 
 };

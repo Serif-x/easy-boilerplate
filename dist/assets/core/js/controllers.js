@@ -2,9 +2,9 @@
 * Site Controllers
 *
 * Author: Serifx Xiao <Serifx@outlook.com>
-* Date: 2015/12/15
+* Date: 2016/03/25
 *
-* Copyright (c) 2015 Serifx Xiao
+* Copyright (c) 2016 Serifx Xiao
 */
 
 ;(function($, window, document, undefined){

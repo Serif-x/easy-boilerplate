@@ -15,13 +15,13 @@ module.exports = function(grunt){
       path: {
         built: 'src/built/',
         dist: {
-          root: 'dist/',
+          root: './dist/',
           assets: {
             core: 'dist/assets/core/'
           },
-          views: 'dist/views/'
+          views: './views/'
         },
-        server: 'dist/'
+        server: './'
       },
       browsers: ['last 2 versions', 'chrome >= 5%', 'firefox >= 5%', 'ie 8', 'ie 9', 'ie 10', 'ie 11', 'edge 12']
     }
@@ -38,7 +38,7 @@ module.exports = function(grunt){
       utils: {
         built: {
           path : CONFIG.common.path.built + 'js/',
-          src: 'src/utilities/*.js',
+          src: 'src/js/utilities/**/*.js',
           files: {
             max: CONFIG.common.path.built + 'js/utils.js',
             min: CONFIG.common.path.built + 'js/utils.min.js'
@@ -475,7 +475,8 @@ module.exports = function(grunt){
       },
       css: {
         files: [
-          { src: [CONFIG.common.path.built + '/css/*.css'], dest: CONFIG.common.path.dist.assets.core + '/css/', expand: true, flatten: true }
+          { src: [CONFIG.common.path.built + '/css/*.css', CONFIG.common.path.built + '/css/*.css.map'],
+            dest: CONFIG.common.path.dist.assets.core + '/css/', expand: true, flatten: true }
         ]
       }
     },
@@ -489,10 +490,14 @@ module.exports = function(grunt){
         options: {
           port: 8001,
           livereload: 8002,  //声明给 watch 监听的端口
-          keepalive: true,
+          keepalive: false,
           base: CONFIG.common.path.server,
           hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
-          open: true //自动打开网页 http://
+          open: {
+            target: 'http://localhost:8001/views', // target url to open
+            appName: 'pool', // name of the app that opens, ie: open, start, xdg-open
+            callback: function() { grunt.log('Welcome to my server!') } // called when the app has opened
+          }
         }
       }
     },
@@ -509,6 +514,8 @@ module.exports = function(grunt){
         ],
         tasks: ['components'],
         options: {
+          interrupt: true,
+          debounceDelay: 1000,
           reload: true,
           livereload: true
         }
@@ -516,8 +523,26 @@ module.exports = function(grunt){
       views: {
         files: CONFIG.common.path.server + '*',
         options: {
+          interrupt: true,
+          debounceDelay: 1000,
           reload: true,
           livereload: '<%=connect.server.options.livereload %>' // connect server
+        }
+      },
+      assets: {
+        files: [
+          'src/components/**/*.less',
+          'src/components/**/*.css',
+          'src/assets/css/*.less',
+          'src/assets/css/*.css',
+          'src/assets/js/controllers.js'
+        ],
+        tasks: ['build_css_core', 'copy:css', 'build_js_controllers', 'copy:js'],
+        options: {
+          interrupt: true,
+          debounceDelay: 1000,
+          reload: true,
+          livereload: true
         }
       }
     }
@@ -564,6 +589,6 @@ module.exports = function(grunt){
 
   /* Server
    ========================================================================== */
-  grunt.registerTask('browse', ['connect:server', 'watch:views']);
+  grunt.registerTask('browse', ['connect:server', 'watch:assets']);
 
 };

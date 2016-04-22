@@ -212,10 +212,10 @@ module.exports = function(grunt){
       },
       uglify: {
         mangle: true, // enable changes to variable and function names,
+        mangleProperties: true,
         compress: true,
         ASCIIOnly: true,
         preserveComments: false, // false, 'some', 'all',
-        mangleProperties: true,
         reserveDOMProperties: true,
         //drop_console: true, // discard calls to console.* functions,
         sourceMap: true,
@@ -238,10 +238,10 @@ module.exports = function(grunt){
       },
       uglify: {
         mangle: true, // enable changes to variable and function names,
+        mangleProperties: false,
         compress: true,
         ASCIIOnly: true,
         preserveComments: false, // false, 'some', 'all',
-        mangleProperties: true,
         reserveDOMProperties: true,
         //drop_console: true, // discard calls to console.* functions,
         sourceMap: true,
@@ -263,11 +263,11 @@ module.exports = function(grunt){
         banner: CONFIG.components.js.controllers.banner
       },
       uglify: {
+        preserveComments: false, // false, 'some', 'all',
         mangle: true, // enable changes to variable and function names,
+        mangleProperties: false,
         compress: true,
         ASCIIOnly: true,
-        preserveComments: false, // false, 'some', 'all',
-        mangleProperties: true,
         reserveDOMProperties: true,
         //drop_console: true, // discard calls to console.* functions,
         sourceMap: true,

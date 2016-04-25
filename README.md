@@ -4,8 +4,8 @@
 
 > Author: Serifx Xiao &lt;Serifx@outlook.com&gt;  
 > CreateDate: 2015/12/11  
-> Update: 2016/3/25  
-> Version: 1.0.0  
+> Update: 2016/4/25  
+> Version: 2.0.0  
 
 > Licensed under the MIT license  
 

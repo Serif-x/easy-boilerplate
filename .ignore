@@ -2,4 +2,4 @@
 .git
 .svn
 node_modules
-dev_components
+bower_components

@@ -39,7 +39,7 @@ module.exports = function(grunt){
       utils: {
         built: {
           path : CONFIG.common.path.built + 'js/',
-          src: 'src/js/utilities/**/*.js',
+          src: 'src/assets/js/utilities/**/*.js',
           files: {
             max: CONFIG.common.path.built + 'js/utils.js',
             min: CONFIG.common.path.built + 'js/utils.min.js'
@@ -70,7 +70,7 @@ module.exports = function(grunt){
       models: {
         built: {
           path : CONFIG.common.path.built + 'js/',
-          src: 'src/assets/js/models.js',
+          src: 'src/assets/js/core/models.js',
           files: {
             max: CONFIG.common.path.built + 'js/models.js',
             min: CONFIG.common.path.built + 'js/models.min.js'
@@ -102,7 +102,7 @@ module.exports = function(grunt){
         built: {
           path : CONFIG.common.path.built + 'js/',
           src: [
-            'src/assets/js/controllers.js',
+            'src/assets/js/core/controllers.js',
             'src/components/**/*.js'
           ],
           files: {
@@ -212,7 +212,7 @@ module.exports = function(grunt){
       },
       uglify: {
         mangle: true, // enable changes to variable and function names,
-        mangleProperties: true,
+        mangleProperties: false,
         compress: true,
         ASCIIOnly: true,
         preserveComments: false, // false, 'some', 'all',
@@ -546,7 +546,7 @@ module.exports = function(grunt){
           'src/components/**/*.css',
           'src/assets/css/*.less',
           'src/assets/css/*.css',
-          'src/assets/js/controllers.js'
+          'src/assets/js/core/controllers.js'
         ],
         tasks: ['build_css_core', 'copy:css', 'build_js_controllers', 'copy:js'],
         options: {

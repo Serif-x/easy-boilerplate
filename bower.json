@@ -1,11 +1,11 @@
 {
   "name": "easy-boilerplate",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "authors": [
     "Serifx Xiao <Serifx@outlook.com>"
   ],
   "description": "前端项目基本初始环境模板，用于即时项目开发，可自动化编译生成发布",
-  "main": "dist",
+  "main": "easy-boilerplate",
   "keywords": [
     "easy-boilerplate",
     "boilerplate",
@@ -15,7 +15,7 @@
   "homepage": "https://github.com/Serif-x/easy-boilerplate",
   "ignore": [
     "node_modules",
-    "dev_components",
+    "bower_components",
     "test",
     "tests"
   ]

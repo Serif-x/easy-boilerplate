@@ -3,27 +3,6 @@
  * ==========================================================================
  */
 
-
-/**
- * preventDefaultEvent
- * @description PreventDefaultEvent
- * @param {Event} e Event object
- * @method
- * @static
- */
-function preventDefaultEvent(e){
-  if(e && e.preventDefault) {
-    e.preventDefault();
-    return;
-  }
-  var _e = window.event || arguments.callee.caller.arguments[0];
-  if (_e && _e.preventDefault) { //W3C
-    _e.preventDefault();
-  }
-  else {//IE
-    window.event.returnValue = false;
-  }
-}
 /**
  * attachEventOnBlank
  * @param {Array} targetsExcluded An object or selector array
